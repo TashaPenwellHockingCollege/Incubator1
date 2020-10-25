@@ -15,41 +15,44 @@ function setup() {
   }
 
   function initialize() {
-    var litresInput = document.getElementById(
-        "litres");
-      litresInput.addEventListener("blur",
-        validateLitres());
-    
-      var gallonsInput = document.getElementById(
-        "gallons");
-      gallonsInput.addEventListener("blur",
-        validateGallons());
-        window.alert("Hello");
-  }
-  
-  function validateLitres() {
-    var litresInput = document.getElementById(
-        "gallons");
-    if (litresInput.value < 1 || litresInput.value >
-      4000) {
-      alert(
-        'Gallon quantity must be between 1 and 4000.');
-      litresInput.value = "";
-      console.log("success");
-    }
+    var measurementInput = document.getElementById(
+      "measurement");
+    measurementInput.addEventListener("input", function () {
+      if (document.getElementById("label").textContent === " Gallons") {
+        validateGallons(); 
+      }
+      else {
+        validateLitres();
+      }
+    });
   }
   
   function validateGallons() {
-    var gallonsInput = document.getElementById(
-        "litres");
-    if (gallonsInput.value < 1 || gallonsInput.value > 1000) {
-      alert(
-        'Litre quantity must be between 1 and 1000.'
-      )
-      gallonsInput.value = "";
+    var measurementInput = document.getElementById(
+      "measurement");
+    if (measurementInput.value < 1 || measurementInput.value > 4000) {
+      alert('Gallon quantity must be between 1 and 4000.');
+      measurementInput.value = "";
       console.log("success");
-    } 
+    }
+    else {
+      console.log("failed")
+    }
   }
+
+  function validateLitres() {
+    var measurementInput = document.getElementById(
+      "measurement");
+    if (measurementInput.value < 1 || measurementInput.value > 4000) {
+      alert('Gallon quantity must be between 1 and 1000.');
+      measurementInput.value = "";
+      console.log("success");
+    }
+    else {
+      console.log("failed")
+    }
+  }
+  
   
   function convert() {
     var litresButton = document.getElementById(
